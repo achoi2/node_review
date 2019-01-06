@@ -1,24 +1,25 @@
 console.log('starting app.js');
 
 const fs = require('fs');
-const os = require('os');
 const _ = require('lodash');
+const yargs = require('yargs');
+
 const notes = require('./notes');
 
-// console.log(_.isString(true));
-// console.log(_.isString('andrew'));
+const argv = yargs.argv;
+let command = argv._[0];
+console.log('Command: ',command);
+console.log('Yargs', argv); 
 
-let filteredArray = _.uniq(['Andrew', 1, 'Andrew', 1, 2, 3, 4]);
-console.log(filteredArray)
+if (command === 'add') {
+    notes.addNote(argv.title, argv.body);
+} else if (command === 'list') {
+    notes.getAll();
+} else if (command === 'read') {
+    notes.getNote(argv.title);
+} else if (command === 'remove') {
+    notes.removeNote(argv.title)
+} else {
+    console.log('Command not recognized');
+}
 
-
-// let total = notes.add(2,4);
-// console.log(total)
-
-// let user = os.userInfo();
-
-// fs.appendFile('greetings.txt', `hello ${user.username} you are ${notes.age}`, (err) => {
-//     if (err) {
-//         console.log('unable to write to file');
-//     }
-// });
