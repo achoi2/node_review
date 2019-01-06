@@ -2,11 +2,18 @@ console.log('starting app.js');
 
 const fs = require('fs');
 const os = require('os');
+const _ = require('lodash');
 const notes = require('./notes');
 
-let total = notes.add(2,4);
+// console.log(_.isString(true));
+// console.log(_.isString('andrew'));
 
-console.log(total)
+let filteredArray = _.uniq(['Andrew', 1, 'Andrew', 1, 2, 3, 4]);
+console.log(filteredArray)
+
+
+// let total = notes.add(2,4);
+// console.log(total)
 
 // let user = os.userInfo();
 
