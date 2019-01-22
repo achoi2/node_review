@@ -23,8 +23,14 @@ request(
         json: true
     },
     (error, response, body) => {
-        console.log(`Address: ${body.results[0].providedLocation.location}`);
-        console.log(`Latitude: ${body.results[0].locations[0].latLng.lat}`);
-        console.log(`Longitude: ${body.results[0].locations[0].latLng.lng}`);
+        if (error) {
+            console.log('unable to connect');
+        } else if (body.status === 'ZERO_RESULTS') {
+            console.log('unable to find that address');
+        } else if (body.status === 'OK') {
+            console.log(`Address: ${body.results[0].providedLocation.location}`);
+            console.log(`Latitude: ${body.results[0].locations[0].latLng.lat}`);
+            console.log(`Longitude: ${body.results[0].locations[0].latLng.lng}`);
+        } 
     }
 );
